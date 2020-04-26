@@ -38,7 +38,7 @@ const ContactForm = ({contacts, addToContacts}) => {
         }
         addToContacts(contact);
         setForm(formInitialState);
-    }
+    };
 
     const {name, number} = form;
     return (
