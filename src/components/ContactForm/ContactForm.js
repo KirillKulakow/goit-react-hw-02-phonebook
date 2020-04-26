@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
     ContForm,
-    NameInput,
-    NameInputLabel,
-    NumberInput,
-    NumberInputLabel,
+    Input,
+    InputLabel,
     ButtonSubmit
 } from './ContactForm.module';
 import PropTypes from 'prop-types';
@@ -43,11 +41,11 @@ const ContactForm = ({contacts, addToContacts}) => {
     const {name, number} = form;
     return (
         <ContForm onSubmit={submitForm}>
-            <NameInputLabel>Name</NameInputLabel>
-            <NameInput name="name" placeholder="Name and Surname" value={name} onChange={addInput} required/>
-            <NumberInputLabel>Number</NumberInputLabel>
-            <NumberInput name="number" placeholder="Number" value={number} onChange={addInput} required/>
-            <ButtonSubmit type="submit">Add to contact</ButtonSubmit>
+            <InputLabel>Name</InputLabel>
+            <Input name="name" placeholder="Name and Surname" value={name} onChange={addInput}/>
+            <InputLabel>Number</InputLabel>
+            <Input name="number" placeholder="Number" value={number} onChange={addInput}/>
+            <ButtonSubmit type="submit" disabled={!name || !number}>Add to contact</ButtonSubmit>
         </ContForm>
     );
 };

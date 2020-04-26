@@ -1,20 +1,18 @@
 import React from 'react';
-import {
-    Contact,
-    ContactDelButton,
-    ContactP
-} from './ContactItem.module';
+import './ContactItem.css';
 import PropTypes from 'prop-types';
+import 'material-icons';
 
 const ContactItem = ({id, name, number, deleteContact}) => {
     const delContact = () => {
         deleteContact(id)
     }
     return (<>
-        <Contact>
-        <ContactP>{`${name}: ${number}`}</ContactP>
-        <ContactDelButton onClick={delContact}>X</ContactDelButton>
-        </Contact>
+        <li className="contact__item">
+            <span className="material-icons green">call</span>
+            <p className="contact__info">{`${name}: ${number}`}</p>
+            <button className="material-icons red button" onClick={delContact}>delete_forever</button>
+        </li>
         </>
     );
 };
