@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import ContactForm from '../ContactForm/ContactForm';
 import ContactItem from '../ContactList/ContactItem';
 import FilterContacts from '../FilterContacts/FilterContacts';
-import { v4 as uuidv4 } from 'uuid';
 import {
     PhonebookTitle
 } from './Phonebook.module'
@@ -17,32 +16,19 @@ const Phonebook = () => {
 
     const addToContacts = (contact) => {
         setContacts([...contacts, contact]);
+        setFilterContacts([...filterContacts, contact]);
     };
 
     const filteredContacts = (filterValue) => {
-        const newContacts = contacts.filter(contact => 
-            (
-                (contact.name.toLowerCase()).includes(filterValue.toLowerCase())
-            ));
-
-        if (filterValue === '') {
-            setFilterContacts(contacts)
-        }
-
-        if (newContacts.length >= 1) {
-            if(filterContacts.length === 1 &&  newContacts.length === 1) {
-                if(newContacts[0].id === filterContacts[0].id){
-                return;
-                }
-            }
-            setFilterContacts(newContacts)
-        }
+        const newContacts = contacts.filter(contact => (contact.name.toLowerCase()).includes(filterValue.toLowerCase()));
+        setFilterContacts(newContacts);
     };
 
     const deleteContact = (id) => {
         const newContacts = contacts.filter((contact) => contact.id !== id);
         setContacts(newContacts);
-    }
+        setFilterContacts(newContacts);
+    };
 
     return (
         <div>
@@ -52,8 +38,8 @@ const Phonebook = () => {
             <PhonebookTitle>Contacts</PhonebookTitle>
             <FilterContacts filteredContacts={filteredContacts}/>
             <ul>
-                {(filterContacts.length ? filterContacts : contacts).map((contact) => (
-                    <ContactItem key={uuidv4()} {...contact} deleteContact={deleteContact}/>
+                {(filterContacts.length ? filterContacts : contacts).map((contact, index) => (
+                    <ContactItem key={`id-${index}`} {...contact} deleteContact={deleteContact}/>
                 ))}
             </ul>
         </div>

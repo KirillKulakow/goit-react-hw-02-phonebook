@@ -16,7 +16,7 @@ const formInitialState = {
 };
 
 const ContactForm = ({contacts, addToContacts}) => {
-    const [form, setForm] = useState({name: '', number: ''});
+    const [form, setForm] = useState(formInitialState);
 
     const addInput = (e) => {
         const name = e.target.name;
@@ -32,7 +32,7 @@ const ContactForm = ({contacts, addToContacts}) => {
             name,
             number
         };
-        if(contacts.find(contact => name === contact.name) !== undefined){
+        if(contacts.some(contact => name === contact.name)){
             alert(`${name} is already in contacts.`);
             return
         }
@@ -44,9 +44,9 @@ const ContactForm = ({contacts, addToContacts}) => {
     return (
         <ContForm onSubmit={submitForm}>
             <NameInputLabel>Name</NameInputLabel>
-            <NameInput name="name" placeholder="Name and Surname" value={name} onChange={addInput}/>
+            <NameInput name="name" placeholder="Name and Surname" value={name} onChange={addInput} required/>
             <NumberInputLabel>Number</NumberInputLabel>
-            <NumberInput name="number" placeholder="Number" value={number} onChange={addInput}/>
+            <NumberInput name="number" placeholder="Number" value={number} onChange={addInput} required/>
             <ButtonSubmit type="submit">Add to contact</ButtonSubmit>
         </ContForm>
     );
