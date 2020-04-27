@@ -39,12 +39,14 @@ const ContactForm = ({contacts, addToContacts}) => {
     };
 
     const {name, number} = form;
+    const nameInput = uuidv4();
+    const numberInput = uuidv4();
     return (
         <ContForm onSubmit={submitForm}>
-            <InputLabel>Name</InputLabel>
-            <Input name="name" placeholder="Name and Surname" value={name} onChange={addInput}/>
-            <InputLabel>Number</InputLabel>
-            <Input name="number" placeholder="Number" value={number} onChange={addInput}/>
+            <InputLabel htmlFor={nameInput}>Name</InputLabel>
+            <Input name="name" placeholder="Name and Surname" value={name} onChange={addInput} id={nameInput}/>
+            <InputLabel htmlFor={numberInput}>Number</InputLabel>
+            <Input id={numberInput} name="number" placeholder="Number" value={number} onChange={addInput}/>
             <ButtonSubmit type="submit" disabled={!name || !number}>Add to contact</ButtonSubmit>
         </ContForm>
     );

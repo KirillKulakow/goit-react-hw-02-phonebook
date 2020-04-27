@@ -4,7 +4,8 @@ import ContactItem from '../ContactList/ContactItem';
 import FilterContacts from '../FilterContacts/FilterContacts';
 import {
     PhonebookTitle,
-    PBContainer
+    PBContainer,
+    ContactList
 } from './Phonebook.module'
 
 const Phonebook = () => {
@@ -38,11 +39,11 @@ const Phonebook = () => {
 
             <PhonebookTitle>Contacts</PhonebookTitle>
             <FilterContacts filteredContacts={filteredContacts}/>
-            <ul>
+            <ContactList>
                 {(filterContacts.length ? filterContacts : contacts).map((contact) => (
                     <ContactItem key={contact.id} {...contact} deleteContact={deleteContact}/>
                 ))}
-            </ul>
+            </ContactList>
         </PBContainer>
     );
 };

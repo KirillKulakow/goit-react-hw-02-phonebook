@@ -10,3 +10,6 @@ export const PBContainer = styled.div`
     background-color: azure;
     border-radius: 20px;
 `;
+export const ContactList = styled.ul`
+padding: 0;
+`

@@ -11,4 +11,8 @@ export const Input = styled.input`
     width: 80%;
 `;
 export const ButtonSubmit = styled.button`
+ padding: 10px;
+ background-color: #33CC66;
+ border: none;
+ cursor: pointer;
 `;
